@@ -35,7 +35,7 @@ class SVG(object):
         self.objects.append(line)
 
     def save(self):
-        with open('/home/vtrefny/Projekty/skola/IV122/' + self.folder + '/' + self.name + '.svg', 'w+') as f:
+        with open('/home/vtrefny/Projekty/skola/iv122/' + self.folder + '/' + self.name + '.svg', 'w+') as f:
             f.write('<svg xmlns="http://www.w3.org/2000/svg">\n')
 
             for obj in self.objects:
