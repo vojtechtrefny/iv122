@@ -1,7 +1,7 @@
 from PIL import Image, ImageDraw
 
 
-class _Point(object):
+class Point(object):
 
     def __init__(self, x, y):
         self.x = x
@@ -28,6 +28,11 @@ class PNG(object):
         bounds = (center.x - radius, center.y - radius,
                   center.x + radius, center.y + radius)
         self.draw.ellipse(bounds, fill=fill_color, outline=outline_color)
+
+    def draw_rectangle(self, point, size, fill_color="black", outline_color="black"):
+        bounds = (point.x, point.y,
+                  point.x + size, point.y + size)
+        self.draw.rectangle(bounds, fill=fill_color, outline=outline_color)
 
     def show(self):
         self.image.show()
