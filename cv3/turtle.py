@@ -10,6 +10,9 @@ class _Position(object):
         self.x = x
         self.y = y
 
+    def __str__(self):
+        return "(%d | %d)" % (self.x, self.y)
+
 class Turtle(object):
 
     def __init__(self, name):
@@ -37,7 +40,7 @@ class Turtle(object):
         self.angle += angle
 
     def left(self, angle):
-        self.angle -= angle
+        self.right(-angle)
 
     def pendown(self):
         self._write = True
@@ -61,6 +64,18 @@ def star(vertices):
 
     for i in range(vertices):
         t.forward(100)
-        t.left(180 - (360 / vertices))
+        t.right(180 - (180 / vertices))
+        t.forward(100)
+
+    t.write_svg()
+
+
+def polygon(sides):
+
+    t = Turtle(name="polygon_" + str(sides))
+
+    for i in range(sides):
+        t.forward(100)
+        t.right(360 / sides)
 
     t.write_svg()

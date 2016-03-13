@@ -1,3 +1,6 @@
+import os
+
+
 class Point(object):
 
     def __init__(self, x, y):
@@ -35,7 +38,9 @@ class SVG(object):
         self.objects.append(line)
 
     def save(self):
-        with open('/home/vtrefny/Projekty/skola/iv122/' + self.folder + '/' + self.name + '.svg', 'w+') as f:
+        project_folder = os.path.dirname(os.path.realpath(__file__))
+
+        with open(project_folder + '/../' + self.folder + '/' + self.name + '.svg', 'w+') as f:
             f.write('<svg xmlns="http://www.w3.org/2000/svg">\n')
 
             for obj in self.objects:
