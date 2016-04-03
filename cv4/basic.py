@@ -58,11 +58,9 @@ def spiral(a, b, size, color=False):
     img.show()
 
 
-def ellipse(x_0, y_0, a, b, fade=False):
+def ellipse(a, b, rotate=0, fade=False):
     """ Draw an ellipse using pixels
 
-        :param x_0 (int): x coordinate for ellipse center
-        :param y_0 (int): y coordinate for ellipse center
         :param a (int): major axis
         :param b (int): minor axis
         :param fade (bool): should the color of the ellipse fade
@@ -78,9 +76,17 @@ def ellipse(x_0, y_0, a, b, fade=False):
             # (0,0,0) -> (255,255,255) greyscale
             # => 255 ellipse rings each smaller with darker colour
 
-            x = ((a + x_0) * i/255) * math.cos(rangle)
-            y = ((b + y_0) * i/255) * math.sin(rangle)
+            x = (a * i/255) * math.cos(rangle)
+            y = (b * i/255) * math.sin(rangle)
 
-            img.draw_pixel(bitmap.Point(x + 200, y + 200), color=(i, i, i))  # + 200 for image center
+            if rotate:
+                rrotate = math.radians(rotate)
+                x = x * math.cos(rrotate) - y * math.sin(rrotate)
+                y = x * math.sin(rrotate) + y * math.cos(rrotate)
+
+            if fade:
+                img.draw_pixel(bitmap.Point(x + 200, y + 200), color=(i, i, i))  # + 200 for image center
+            else:
+                img.draw_pixel(bitmap.Point(x + 200, y + 200))
 
     img.show()
