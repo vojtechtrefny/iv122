@@ -1,11 +1,25 @@
 import matplotlib.pyplot as pyplot
 
 def nsd(a, b):
+    # modulo method
     steps = 0
     while b > 0:
         c = a % b
         a = b
         b = c
+        steps += 1
+
+    return steps
+
+
+def nsd2(a, b):
+    # subtraction method
+    steps = 0
+    while a != b:
+        if a > b:
+            a = a - b
+        else:
+           b = b - a
         steps += 1
 
     return steps
@@ -17,8 +31,8 @@ colors = ["b", "c", "g", "y", "m", "r", "k"]
 
 def get_color(num, max_steps):
     # set color based on number of steps and maximum number of steps
-    for i in range(6):  # 6 colours
-        if num <= ((i + 1) * max_steps) // 6:
+    for i in range(7):
+        if num <= (i + 1) * (max_steps / 7):
             return colors[i]
 
 max_num = 100  # limit for nsd count
