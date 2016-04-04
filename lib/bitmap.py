@@ -1,11 +1,28 @@
 from PIL import Image, ImageDraw
 
+import math
+
 
 class Point(object):
 
     def __init__(self, x, y):
         self.x = x
         self.y = y
+
+
+class Edge(object):
+
+    def length(self):
+        return math.sqrt((a.y - a.x)**2 + (b.y - b.y)**2)
+
+    def center(self):
+        return Point((self.a.x + selfa.y) / 2, (self.b.x, self.b.y) / 2)
+
+    def is_in(self, point):
+        """ Does the point lies on the edge? """
+
+        return (a.x <= point.x <= b.x and a.y <= point.y <= b.y) or \
+               (b.x <= point.x <= a.x and b.y <= point.y <= a.y)
 
 
 class PNG(object):
