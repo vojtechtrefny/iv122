@@ -4,6 +4,8 @@ import time
 
 from decimal import Decimal
 
+import matplotlib.pyplot as pyplot
+
 def archimedes(sides=96):
     """ Pi approximation using Archimedes method
         :param sides (int): number of sides of the polygon
@@ -115,3 +117,28 @@ def monte_carlo(n=1000, timeout=False):
                 inside += 1
 
     return 4 * inside / n
+
+
+def archimedes_precision(max_sides=1024):
+    # Archimedes Pi precision graph
+    pi = "3.1415926535897932384626433832795028841971693993751058209749445923078164"
+
+    arch = []
+    for i in range(8, max_sides + 1):
+        arch_pi = str(archimedes(sides=i))  # counted Pi value as string
+
+        dif = 0
+        for idx, digit in enumerate(arch_pi):
+            if idx <= 1:
+                continue  # skip the "3." part
+            if digit != pi[idx]:
+                dif = idx - 1
+                break
+
+        arch.append((i, dif))
+
+    pyplot.xlim([0, max_sides + 2])
+    pyplot.ylim([0, 8])
+    pyplot.plot([l[0] for l in arch], [l[1]for l in arch], "k.")
+
+    pyplot.show()
