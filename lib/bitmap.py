@@ -9,20 +9,29 @@ class Point(object):
         self.x = x
         self.y = y
 
+    def __repr__(self):
+        return "[%f | %f]" % (self.x, self.y)
+
 
 class Edge(object):
 
-    def length(self):
-        return math.sqrt((a.y - a.x)**2 + (b.y - b.y)**2)
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
 
+    @property
+    def length(self):
+        return math.sqrt((self.a.y - self.a.x)**2 + (self.b.y - self.b.y)**2)
+
+    @property
     def center(self):
-        return Point((self.a.x + selfa.y) / 2, (self.b.x, self.b.y) / 2)
+        return Point((self.a.x + self.b.x) / 2, (self.a.y + self.b.y) / 2)
 
     def is_in(self, point):
         """ Does the point lies on the edge? """
 
-        return (a.x <= point.x <= b.x and a.y <= point.y <= b.y) or \
-               (b.x <= point.x <= a.x and b.y <= point.y <= a.y)
+        return (self.a.x <= point.x <= self.b.x and self.a.y <= point.y <= self.b.y) or \
+               (self.b.x <= point.x <= self.a.x and self.b.y <= point.y <= self.a.y)
 
 
 class PNG(object):
