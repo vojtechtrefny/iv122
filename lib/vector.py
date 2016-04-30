@@ -1,4 +1,11 @@
 import os
+import math
+
+
+def distance(a, b):
+    # distance of two points
+
+    return math.sqrt((a.x - b.x)**2 + (a.y - b.y)**2)
 
 
 class Point(object):
@@ -17,6 +24,11 @@ class Line(object):
     def __init__(self, start, end):
         self.start = start
         self.end = end
+
+    def is_in(self, point):
+        """ Does the point lies on the line? """
+
+        return abs(distance(point, self.start) + distance(point, self.end) - distance(self.start, self.end)) <= 0.0000001
 
     def __str__(self):
         return '<line x1="{}" y1="{}" x2="{}" y2="{}" stroke="black" ' \
