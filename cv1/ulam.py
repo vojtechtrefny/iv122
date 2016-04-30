@@ -67,12 +67,27 @@ def ulam(width):
     return coordinates
 
 # ---------------------------------------------------------------------------- #
-# prvocisla v posloupnosti
+# cisla delitelna 4 v posloupnosti
 
-nums = ulam(400)
+nums = ulam(300)
 to_print = [num[1] for num in nums if num[0] % 4 == 0]
 
 pyplot.axis("off")
 pyplot.plot([l[0] for l in to_print], [l[1]for l in to_print], "k,")
+
+pyplot.show()
+
+
+# ---------------------------------------------------------------------------- #
+# prvocisla v posloupnosti
+
+nums = ulam(300)
+primes = eratos(100000)
+print(primes)
+print(nums[-1][0])
+to_print = [num[1] for num in nums if num[0] in primes]
+
+pyplot.axis("off")
+pyplot.plot([l[0] for l in to_print], [l[1]for l in to_print], "k.")
 
 pyplot.show()
