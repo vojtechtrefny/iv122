@@ -3,6 +3,12 @@ from PIL import Image, ImageDraw
 import math
 
 
+def distance(a, b):
+    # distance of two points
+
+    return math.sqrt((a.x - b.x)**2 + (a.y - b.y)**2)
+
+
 class Point(object):
 
     def __init__(self, x, y):
@@ -30,8 +36,7 @@ class Edge(object):
     def is_in(self, point):
         """ Does the point lies on the edge? """
 
-        return (self.a.x <= point.x <= self.b.x and self.a.y <= point.y <= self.b.y) or \
-               (self.b.x <= point.x <= self.a.x and self.b.y <= point.y <= self.a.y)
+        return abs(distance(point, self.a) + distance(point, self.b) - distance(self.a, self.b)) <= 0.0000001
 
 
 class PNG(object):
