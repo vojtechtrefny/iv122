@@ -127,18 +127,26 @@ def archimedes_precision(max_sides=1024):
     for i in range(8, max_sides + 1):
         arch_pi = str(archimedes(sides=i))  # counted Pi value as string
 
-        dif = 0
+        digit_dif = 0
         for idx, digit in enumerate(arch_pi):
             if idx <= 1:
                 continue  # skip the "3." part
             if digit != pi[idx]:
-                dif = idx - 1
+                digit_dif = idx - 1
                 break
 
-        arch.append((i, dif))
+        arch.append((i, digit_dif,  Decimal(arch_pi) - Decimal(pi)))
 
     pyplot.xlim([0, max_sides + 2])
     pyplot.ylim([0, 8])
+    pyplot.title("Pocet platnych desetinnych mist")
     pyplot.plot([l[0] for l in arch], [l[1]for l in arch], "k.")
+
+    pyplot.show()
+
+    pyplot.xlim([0, max_sides + 2])
+    pyplot.yscale("log")
+    pyplot.title("Absolutni presnost")
+    pyplot.plot([l[0] for l in arch], [l[2]for l in arch], "k,")
 
     pyplot.show()
