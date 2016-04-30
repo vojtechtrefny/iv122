@@ -87,8 +87,6 @@ def circle_lines():
 
     svg.save()
 
-circle_lines()
-
 
 def triangles_turtle():
 
@@ -112,5 +110,27 @@ def triangles_turtle():
         for j in range(3):
             t.forward(100 - (i + 1) * 20)
             t.left(120)
+
+    t.write_svg()
+
+
+def diamond_turtle():
+
+    t = Turtle(name="diamond")
+
+    # move turtle tp eliminate negative coordinates in the svg
+    t.penup()
+    t.forward(100)
+    t.right(90)
+    t.forward(100)
+    t.left(90)
+    t.pendown()
+
+    for i in range(12):
+        for j in range(12):
+            t.forward(50)
+            t.left(30)
+
+        t.left(30)
 
     t.write_svg()
