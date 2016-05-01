@@ -10,20 +10,25 @@ def distance(a, b):
 
 class Point(object):
 
-    def __init__(self, x, y):
+    def __init__(self, x, y, color="black"):
         self.x = x
         self.y = y
+        self.color = color
+
+    def __sub__(self, other):
+        return Point(self.x - other.x, self.y - other.y)
 
     def __str__(self):
-        return '<circle cx="{}" cy="{}" r="2" stroke="black" stroke-width="3" ' \
-               'fill="black" />\n'.format(self.x, self.y)
+        return '<circle cx="{}" cy="{}" r="2" stroke="{}" stroke-width="3" ' \
+               'fill="black" />\n'.format(self.x, self.y, self.color)
 
 
 class Line(object):
 
-    def __init__(self, start, end):
+    def __init__(self, start, end, color="black"):
         self.start = start
         self.end = end
+        self.color = color
 
     def is_in(self, point):
         """ Does the point lies on the line? """
@@ -31,9 +36,9 @@ class Line(object):
         return abs(distance(point, self.start) + distance(point, self.end) - distance(self.start, self.end)) <= 0.0000001
 
     def __str__(self):
-        return '<line x1="{}" y1="{}" x2="{}" y2="{}" stroke="black" ' \
+        return '<line x1="{}" y1="{}" x2="{}" y2="{}" stroke="{}" ' \
                'stroke-width="1"/>\n'.format(self.start.x, self.start.y,
-                                              self.end.x, self.end.y)
+                                              self.end.x, self.end.y, self.color)
 
 
 class SVG(object):
