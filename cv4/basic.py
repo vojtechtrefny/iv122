@@ -90,3 +90,23 @@ def ellipse(a, b, rotate=0, fade=False):
                 img.draw_pixel(bitmap.Point(x + 200, y + 200))
 
     img.show()
+
+
+def triangle(a=255, color=True):
+    """ Draw a triangle using pixels
+
+        :param a (int): side lenght
+        :param color (bool): should be the triangle colored
+
+    """
+
+    img = bitmap.PNG()
+
+    i = 0  # level
+    shift = 0.5*math.sqrt(2) / 2
+    for y in numpy.arange(0, a / math.sqrt(2), 0.5):
+        for x in numpy.arange(0 + shift * i, a - shift * i, 0.5):
+            img.draw_pixel(bitmap.Point(x, y), color=(int(255 - x), int(x), int((y * math.sqrt(2)))))
+        i += 1
+
+    img.show()
