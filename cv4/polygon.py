@@ -79,6 +79,9 @@ class Polygon(object):
                 if self.is_in(p):
                     img.draw_pixel(p)
 
+        # img.draw_line(bitmap.Point(0, 70), bitmap.Point(150, 100), color="red")
+        # img.draw_line(bitmap.Point(0, 70), bitmap.Point(120, 150), color="blue")
+
         img.show()
 
 
