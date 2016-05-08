@@ -41,7 +41,12 @@
 
 <div style="text-align: center">
   <a href="polygon.png"><img src="polygon.png" style="height: 150px" /></a>
+  <a href="polygon2.png"><img src="polygon2.png" style="height: 150px" /></a>
 </div>
+
+<p>Pro všechny body v obdelníku vymezeným &ldquo;krajními body&bdquo; mnohoúhelníku zjistíme, jestli do něj patří.
+To provedeme konstrukcí úsečky z (libovolného) bodu vně mnohoúhelníku do zkoumaného bodu a zjištěním, s kolika
+stranami se daná úsečka protíná. Pokud je počet průsečíků lichý, bod v mnohoúhelníku leží, jinak nikoli.</p>
 
   <ul>
     <li><a href="https://github.com/vojtechtrefny/iv122/blob/master/cv4/polygon.py">Kód</a></i></li>
@@ -49,17 +54,34 @@
 
 <h4>C) Efekty</h4>
 
-<ul>
-  <li>TBD</li>
-</ul>
+<div style="text-align: center">
+  <a href="grid.png"><img src="grid.png" style="height: 220px" /></a>
+</div>
+
+  <ul>
+    <li><a href="https://github.com/vojtechtrefny/iv122/blob/master/cv4/effect.py">Kód</a></i></li>
+  </ul>
 
 <h4>D) Skrývačky</h4>
 
 <div style="text-align: center">
   <a href="hidden1.png"><img src="hidden1.png" style="height: 100px" /></a>
-  <a href="hidden2.png"><img src="hidden2.png" style="height: 100px" /></a>
-  <a href="hidden3.png"><img src="hidden3.png" style="height: 100px" /></a>
 </div>
+
+<p>Zvýraznění modré barvy v obrázku -- vynásobení modré složky každého pixelu * 100.</p>
+
+<div style="text-align: center">
+  <a href="hidden2.png"><img src="hidden2.png" style="height: 100px" /></a>
+</div>
+
+<p>Výpočet <a href="https://en.wikipedia.org/wiki/Relative_luminance">relativní luminance</a> každého pixelu a v případě, že je rozdíl luminance dvou pixelů v řadě vyšší
+než 0,5 (práh zjištěný &bdquo;odhadem&ldquo; ze spočtených rozdílů) přebarvení pixelu na černo.</p>
+
+<div style="text-align: center">
+  <a href="hidden3.png"><img src="hidden3.png" style="height: 130px" /></a>
+</div>
+
+<p>Xor každé složky barvy pixelů s 1px černo-bílou mřížkou.</p>
 
 <ul>
   <li><a href="https://github.com/vojtechtrefny/iv122/blob/master/cv4/hidden.py">Kód</a></i></li>
