@@ -18,6 +18,9 @@ class Point(object):
     def __sub__(self, other):
         return Point(self.x - other.x, self.y - other.y)
 
+    def __eq__(self, other):
+        return abs(self.x - other.x) < 0.00001 and abs(self.y - other.y) < 0.00001
+
     def __str__(self):
         return '<circle cx="{}" cy="{}" r="2" stroke="{}" stroke-width="3" ' \
                'fill="black" />\n'.format(self.x, self.y, self.color)
@@ -34,6 +37,10 @@ class Line(object):
         """ Does the point lies on the line? """
 
         return abs(distance(point, self.start) + distance(point, self.end) - distance(self.start, self.end)) <= 0.0000001
+
+    @property
+    def length(self):
+        return abs(distance(self.start, self.end))
 
     def __str__(self):
         return '<line x1="{}" y1="{}" x2="{}" y2="{}" stroke="{}" ' \
