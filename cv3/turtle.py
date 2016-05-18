@@ -17,10 +17,11 @@ class Turtle(object):
 
     def __init__(self, name):
 
-        self.position = _Position(100, 100)  # FIXME -- in vector fix negative coords
+        self.position = _Position(500, 500)  # FIXME -- in vector fix negative coords
         self._write = True
 
         self.angle = 0
+        self.stack = []
 
         self.svg = vector.SVG(folder="cv3", name=name)
 
@@ -32,6 +33,12 @@ class Turtle(object):
 
         if self._write:
             self.svg.add_line(start.x, start.y, self.position.x, self.position.y)
+
+    def push(self):
+        self.stack.append((self.position.x, self.position.y, self.angle))
+
+    def pop(self):
+        self.position.x, self.position.y, self.angle = self.stack.pop()
 
     def back(self, step):
         self.forward(-step)
