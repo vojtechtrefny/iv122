@@ -4,12 +4,16 @@ import math
 import random
 
 
-def chaos_game(n=3, p=1/2, iterations=100000):
+def chaos_game(n=3, p=1/2, iterations=100000, regular=True):
 
     img = bitmap.PNG(800, 800)
 
-    points = [bitmap.Point(400 + 300 * math.cos(2 * math.pi * i / n),
-                           400 + 300 * math.sin(2 * math.pi * i / n)) for i in range(1, n + 1)]
+    if regular:
+        points = [bitmap.Point(400 + 300 * math.cos(2 * math.pi * i / n),
+                               400 + 300 * math.sin(2 * math.pi * i / n)) for i in range(1, n + 1)]
+    else:
+        points = [bitmap.Point(400 + 300 * math.cos(2 * math.pi * random.random()),
+                               400 + 300 * math.sin(2 * math.pi * random.random())) for i in range(n)]
 
     # draw the initial points
     for i in points:
