@@ -55,9 +55,9 @@ class SVG(object):
         self.folder = folder
         self.objects = []
 
-    def add_line(self, start_x, start_y, end_x, end_y):
+    def add_line(self, start_x, start_y, end_x, end_y, color="black"):
         line = Line(Point(start_x, start_y),
-                    Point(end_x, end_y))
+                    Point(end_x, end_y), color)
 
         self.objects.append(line)
 

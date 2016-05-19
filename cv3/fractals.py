@@ -1,9 +1,10 @@
 import copy
+import colorsys
 
 from turtle import Turtle
 
 
-def fractal_image(name, angle, seed, rules, iterations=5):
+def fractal_image(name, angle, seed, rules, iterations=5, color=True):
     stack = []
     curve = seed
 
@@ -18,11 +19,19 @@ def fractal_image(name, angle, seed, rules, iterations=5):
 
         curve = replaced_curve
 
+    if color:
+        name += "_color"
+
     t = Turtle(name=name)
 
-    for step in curve:
+    for idx, step in enumerate(curve):
         if step in ("F", "G"):
-            t.forward(10)
+            if color:
+                hsv_color = ((idx + 1) / len(curve), 0.75, 0.75)
+                rgb_color = [int(255 * i) for i in colorsys.hsv_to_rgb(*hsv_color)]
+                t.forward(10, color="rgb(%d, %d, %d" % (rgb_color[0], rgb_color[1], rgb_color[2]))
+            else:
+                t.forward(10)
         elif step == "f":
             t.penup()
             t.forward(10)
@@ -46,6 +55,9 @@ fractal_image(name="koch", angle=60, seed="F++F++F", rules={"F" : "F-F++F-F"})
 
 # hilbert curve
 fractal_image(name="hilbert", angle=90, seed="L", rules={"L" : "+RF-LFL-FR+", "R" : "-LF+RFR+FL-"})
+
+# hilbert curve
+fractal_image(name="hilbert2", angle=95, seed="L", rules={"L" : "+RF-LFL-FR+", "R" : "-LF+RFR+FL-"})
 
 # sierpinski triangle
 fractal_image(name="sierpinski", angle=60, seed="FXF++FF++FF", rules={"F" : "FF", "X" : "++FXF--FXF--FXF++"})

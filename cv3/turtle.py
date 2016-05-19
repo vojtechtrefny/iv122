@@ -25,14 +25,14 @@ class Turtle(object):
 
         self.svg = vector.SVG(folder="cv3", name=name)
 
-    def forward(self, step):
+    def forward(self, step, color="black"):
         start = copy.deepcopy(self.position)
 
         self.position.x += math.cos(math.radians(self.angle)) * step
         self.position.y += math.sin(math.radians(self.angle)) * step
 
         if self._write:
-            self.svg.add_line(start.x, start.y, self.position.x, self.position.y)
+            self.svg.add_line(start.x, start.y, self.position.x, self.position.y, color)
 
     def push(self):
         self.stack.append((self.position.x, self.position.y, self.angle))
