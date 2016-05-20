@@ -10,6 +10,8 @@ def distance(a, b):
 
 class Point(object):
 
+    type = "point"
+
     def __init__(self, x, y, color="black"):
         self.x = x
         self.y = y
@@ -27,6 +29,8 @@ class Point(object):
 
 
 class Line(object):
+
+    type = "line"
 
     def __init__(self, start, end, color="black"):
         self.start = start
@@ -61,7 +65,37 @@ class SVG(object):
 
         self.objects.append(line)
 
+    def normalize(self):
+        """ Make sure we don't have negative coordinates in our svg
+        """
+        min_x = 0
+        min_y = 0
+
+        for obj in self.objects:
+            if obj.type == "point":
+                points = [obj]
+            if obj.type == "line":
+                points = [obj.start, obj.end]
+
+            for point in points:
+                if point.x < min_x:
+                    min_x = point.x
+                if point.y < min_y:
+                    min_y = point.y
+
+        if min_x < 0 or min_y < 0:
+            for obj in self.objects:
+                if obj.type == "point":
+                    obj.x += abs(min_x)
+                    obj.y += abs(min_y)
+                if obj.type == "line":
+                    obj.start.x += abs(min_x)
+                    obj.start.y += abs(min_y)
+                    obj.end.x += abs(min_x)
+                    obj.end.y += abs(min_y)
+
     def save(self):
+        self.normalize()
         project_folder = os.path.dirname(os.path.realpath(__file__))
 
         with open(project_folder + '/../' + self.folder + '/' + self.name + '.svg', 'w+') as f:
