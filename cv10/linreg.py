@@ -1,7 +1,6 @@
 import matplotlib.pyplot as pyplot
 import numpy
 import random
-import operator
 
 from decimal import Decimal
 
