@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>IV122 by vojtechtrefny</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Iv122</h1>
+      <h2 class="project-tagline"></h2>
+      <a href="https://github.com/vojtechtrefny/iv122" class="btn">View on GitHub</a>
+      <a href="https://github.com/vojtechtrefny/iv122/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/vojtechtrefny/iv122/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+
+<h3>CV9: Pravděpodobnost</h3>
+
+<h4>A) Monty Hall</h3>
+
+<p>Pravděpodobnosti výhry při 1 000, 10 000 a 100 000 pokusech:</p>
+<ul>
+<li>Beze změny rozhodnutí: 0.333 0.3302 0.33469</li>
+<li>Změna rozhodnutí: 0.682 0.6769 0.66741</li>
+<li>Náhodně změnit/nezměnit rozhodnutí: 0.491 0.4993 0.50001</li>
+</ul>
+
+  <ul>
+    <li><a href="https://github.com/vojtechtrefny/iv122/blob/master/cv9/monty_hall.py">Kód</a></i></li>
+  </ul>
+
+<h4>B) Nenáhodná čísla</h4>
+
+<h5>1. soubor dat</h5>
+
+<ul>
+<li>Frekvence čísel: '1': 833, '3': 833, '6': 833, '2': 834, '5': 833, '4': 834</li>
+<li>Chí kvadrát: 0.001599</li>
+<li>Opakování n-tic: N/A</li>
+</ul>
+
+<p>Vzorek vypadá &bdquo;až příliš dobrý&ldquo; na to, aby byl náhodný. Po zběžné prohlídce mi přišlo, že by mohl být vytvořen jako
+posloupnost náhodných permutací množiny "1 2 3 4 5 6". To se potvrdilo -- tato posloupnost se v různých permutacích
+opakuje celkem 833 krát. Tedy až na poslední dvojici (2 a 4) celý soubor.</p>
+
+<h5>2. soubor dat</h5>
+
+<ul>
+<li>Frekvence čísel: '1': 856, '3': 829, '6': 798, '2': 428, '5': 1244, '4': 845</li>
+<li>Chí kvadrát: 401.8312</li>
+<li>Opakování n-tic: N/A</li>
+</ul>
+
+<p>Zjevně vyšší pravděpodobnost pětky oproti dvojce.</p>
+
+<h5>3. soubor dat</h5>
+
+<ul>
+<li>Frekvence čísel: '5': 821, '3': 850, '6': 850, '2': 836, '1': 819, '4': 824</li>
+<li>Chí kvadrát: 1.2088</li>
+<li>Opakování n-tic: N/A</li>
+</ul>
+
+<p>Zdá se v pořádku.</p>
+
+<h5>4. soubor dat</h5>
+
+<ul>
+<li>Frekvence čísel: '5': 819, '3': 829, '6': 823, '2': 827, '1': 852, '4': 850</li>
+<li>Chí kvadrát: 1.1968</li>
+<li>Opakování n-tic: N/A</li>
+</ul>
+
+<p>Zdá se v pořádku.</p>
+
+<h5>5. soubor dat</h5>
+
+<ul>
+<li>Frekvence čísel: '5': 842, '3': 812, '6': 859, '2': 836, '1': 808, '4': 843</li>
+<li>Chí kvadrát: 2.317599</li>
+<li>Opakování n-tic: 514 krát '53416'</li>
+</ul>
+
+<p>Opakování posloupnosti '53416'.</p>
+
+<h5>6. soubor dat</h5>
+
+<ul>
+<li>Frekvence čísel: '1': 849, '3': 849, '6': 802, '2': 851, '5': 803, '4': 846</li>
+<li>Chí kvadrát: 3.438399</li>
+<li>Opakování n-tic: 47 krát '263351312255621626365641541521666445336432123351613652'</li>
+</ul>
+
+<p>Opakování posloupnosti '263351312255621626365641541521666445336432123351613652'.</p>
+
+<h5>7. soubor dat</h5>
+
+<ul>
+<li>Frekvence čísel: '5': 833, '3': 823, '6': 830, '2': 842, '1': 838, '4': 834</li>
+<li>Chí kvadrát: 0.2584</li>
+<li>Opakování n-tic: 2 krát '314153231326125151465252643645653635522646445125334612161...' (délka 1250)</li>
+</ul>
+
+<p>Opakování posloupnosti.</p>
+
+  <ul>
+    <li><a href="https://github.com/vojtechtrefny/iv122/blob/master/cv9/non_random.py">Kód</a></i></li>
+  </ul>
+
+<h4>C) Centrální limitní věta</h4>
+
+<div style="text-align: center">
+  <a href="clt1.png"><img src="clt1.png" style="height: 250px" /></a><br />
+  <em>Hody kostkou Ka. Průměr: 4.334608. Odchylka: 0.149432</em>
+</div>
+
+<div style="text-align: center">
+  <a href="clt2.png"><img src="clt2.png" style="height: 250px" /></a><br />
+  <em>Náhodně výběr Ka/Kb pro vzorek. Průměr: 3.515709. Odchylka: 0.170401</em>
+</div>
+
+<div style="text-align: center">
+  <a href="clt3.png"><img src="clt3.png" style="height: 250px" /></a><br />
+  <em>Hody kostkou Ka. Průměr: 4.334608. Odchylka: 0.848447</em>
+</div>
+
+  <ul>
+    <li><a href="https://github.com/vojtechtrefny/iv122/blob/master/cv9/clt.py">Kód</a></i></li>
+  </ul>
