@@ -1,5 +1,6 @@
 import math
 import numpy
+import time
 
 from lib import bitmap
 
@@ -7,7 +8,7 @@ roots = [complex(1, 0), complex(-0.5, math.sqrt(3) / 2), complex(-0.5, -math.sqr
 znext = lambda z : z - ((z**3 - 1) / (3 * z**2))
 
 
-def newton(x_range=(-2, 2), y_range=(-2, 2), resolution=800, tolerance=0.0001):
+def newton(x_range=(-2, 2), y_range=(-2, 2), resolution=800, tolerance=0.0001, timing=False):
 
     # lengths of the intervals (ranges)
     x_length = x_range[1] - x_range[0]
@@ -24,7 +25,6 @@ def newton(x_range=(-2, 2), y_range=(-2, 2), resolution=800, tolerance=0.0001):
     y_step = y_length / y_resolution
 
     for x in numpy.arange(x_range[0], x_range[1], x_step):
-        print(x)
         for y in numpy.arange(y_range[0], y_range[1], y_step):
 
             z = complex(x, y)
@@ -42,7 +42,6 @@ def newton(x_range=(-2, 2), y_range=(-2, 2), resolution=800, tolerance=0.0001):
                     py = (y + abs(y_range[0])) * (y_resolution / y_length)
                 else:
                     py = (y - abs(y_range[0])) * (y_resolution / y_length)
-                print(px, py)
 
                 if abs(z - roots[0]) < tolerance:
                     img.draw_pixel(bitmap.Point(px, py), color=(255 - i * 10, 0, 0))
@@ -57,8 +56,13 @@ def newton(x_range=(-2, 2), y_range=(-2, 2), resolution=800, tolerance=0.0001):
                 z = znext(z)
                 i += 1
 
-    img.show()
+    if not timing:
+        img.show()
 
+#start_time = time.time()
+#newton(resolution=20, timing=True)
+#end_time = time.time()
+#print("Time for not parallel function is %f [s]" % (end_time - start_time))
 
 newton()
 newton(x_range=(-0.5, 0.5), y_range=(-0.5, 0.5))
