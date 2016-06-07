@@ -41,11 +41,11 @@ class Edge(object):
 
 class PNG(object):
 
-    def __init__(self, width=400, height=400):
+    def __init__(self, width=400, height=400, img_color=(255, 255, 255, 255)):
         self.width = width
         self.height = height
 
-        self.image = Image.new("RGBA", (self.width, self.height), (255, 255, 255, 255))
+        self.image = Image.new("RGBA", (self.width, self.height), img_color)
 
         self.draw = ImageDraw.Draw(self.image)
 
