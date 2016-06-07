@@ -63,3 +63,24 @@
   <ul>
     <li><a href="https://github.com/vojtechtrefny/iv122/blob/master/cv7/julia.py">Kód</a></i></li>
   </ul>
+
+<h4>D) Zrychlení</h4>
+
+<p>Pokusil jsem se zrychlit průběh generování Newtonova fraktálů paralelním zpracováním výpočtů.
+Protože Python neumožňuje paralelní zpracování pomocí vláken, pokusil jsem se využít knihovnu
+<em>multiprocessing</em> pro vytvoření více procesů-workerů a výpočet rozdělil jednoduše na
+čtvrtiny (resp. na jakýkoli zlomek podle počtu procesorů) podle osy x.</p>
+<p>Bohužel jsem narazil na problém, kdy sdílená fronta (<em>multiprocessing.Queue</em>) má
+v Pythonu velmi malý limit na paměť (<a href="https://bugs.python.org/issue8237">bug</a>) a
+z procesů jsem tak nemohl &bdquo;vytáhnout&ldquo; spočtená data pro obrázek větší než 20x20 pixelů.</p>
+<p>V tomto případě je výsledek pro paralelní zpracování dokonce cca. 5x pomalejší než u neparalelního
+pravděpodobně vlivem režie vytváření nových procesů (samotný výpočet pro obrázek 20x20 pixelů trvá méně než
+setinu sekundy).</p>
+<p>Výpočet pro obrázek o velikosti 800x800 px bez předávání parametrů (a tedy bez vykreslení, pouze samotný výpočet)
+je urychlen cca. 3,4krát (na čtyřjádrovém procesoru) --  1,54 sekundy vs. 5.27 sekundy. Samotné vytvoření/vykreslení obrázku
+pak zabere cca. dalších 5 sekund. V případě využití jiného řešení pro předávání výsledků mezi procesy (např. ručně přes socket)
+by tedy došlo k cca. 1,5 násobnému zrychlení celého programu.</p>
+
+<ul>
+  <li><a href="https://github.com/vojtechtrefny/iv122/blob/master/cv7/parallel.py">Kód</a></i></li>
+</ul>
