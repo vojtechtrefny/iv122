@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>IV122 by vojtechtrefny</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Iv122</h1>
+      <h2 class="project-tagline"></h2>
+      <a href="https://github.com/vojtechtrefny/iv122" class="btn">View on GitHub</a>
+      <a href="https://github.com/vojtechtrefny/iv122/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/vojtechtrefny/iv122/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+
+<h3>CV11: Grafy a bludiště</h3>
+
+<h4>A) Číselné bludiště</h3>
+
+<p>Řešením je použití Dijkstrova algoritmu s menší úpravou tak, aby zaznamenal všechny nekratší cesty.
+Počet nejkratších cest jsem pak zkišťoval algoritmem podobným DFS, který si ale nezapamatovával navštívené
+body, ale pouze počítal, kolikrát (při spuštění ze startu) dojde do cílového bodu.</p>
+<p>Níže jsou uvedená řešení pro zadaná bludiště.</p>
+
+<h5>Bludiště číslo 1</h5>
+
+<ul>
+  <li>Nejkratší cesta: <em>[(0, 0), (0, 2), (2, 2), (3, 2), (3, 3)]</em></li>
+  <li>Délka: <em>6</em></li>
+  <li>Unikátní: <em>Ano</em></li>
+</ul>
+
+<h5>Bludiště číslo 2</h5>
+
+<ul>
+  <li>Nejkratší cesta: <em>[(0, 0), (3, 0), (3, 3), (3, 1), (4, 1), (4, 2), (4, 4)]</em></li>
+  <li>Délka: <em>12</em></li>
+  <li>Unikátní: <em>Ne, existuje ještě jedna další.</em></li>
+</ul>
+
+<h5>Bludiště číslo 3</h5>
+
+<ul>
+  <li>Nejkratší cesta: <em>[(0, 0), (1, 0), (2, 0), (3, 0), (4, 0), (4, 3), (4, 4)]</em></li>
+  <li>Délka: <em>8</em></li>
+  <li>Unikátní: <em>Ano</em></li>
+</ul>
+
+<h5>Bludiště číslo 4</h5>
+
+<ul>
+  <li>Nejkratší cesta: <em>[(0, 0), (9, 0), (9, 2), (3, 2), (3, 6), (8, 6), (9, 6), (9, 4), (9, 7), (9, 9)]</em></li>
+  <li>Délka: <em>34</em></li>
+  <li>Unikátní: <em>Ano</em></li>
+</ul>
+
+
+  <ul>
+    <li><a href="https://github.com/vojtechtrefny/iv122/blob/master/cv11/number_maze.py">Kód</a></i></li>
+  </ul>
+
+<h4>B) Variace na bludiště dle vlastní volby</h4>
+
+<div style="text-align: center">
+  <img src="animation.gif" />
+</div>
+
+<p>Rozhodl jsem se vyzkoušet variantu bludiště &bdquo;s dynamitem&ldquo;. K řešení je
+opět použit Dijkstrův algoritmus s tím, že stěny mají výrazně vyšší ohodnocení než
+prázdná pole.</p>
+
+<p>Bludiště v ukázce je generované náhodně s podmínkami, že start (zeleně) a
+cíl (červeně) jsou umístěny na krajích a poměr stěn a volného místa je (přibližně)
+2 ku 3.</p>
+<p>(Generování animace není součástí kódu, tu jsem vytvářel ručně, kód pouze vytvoří
+  SVG soubory pro každý krok.)</p>
+
+<ul>
+  <li><a href="https://github.com/vojtechtrefny/iv122/blob/master/cv11/dynamit_maze.py">Kód</a></i></li>
+</ul>
