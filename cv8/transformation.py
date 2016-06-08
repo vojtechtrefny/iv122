@@ -1,49 +1,59 @@
 from lib import vector
 
-import copy
-
-import numpy
 import math
+
+
+def dot(a, b):
+    # AxB
+
+    res = [[0 for i in b[0]] for j in a]
+
+    for i in range(len(a)):
+        for j in range(len(b[i])):
+            for k in range(len(b)):
+                res[i][j] += a[i][k]*b[k][j]
+
+    return res
 
 
 def combine(transformations):
     matrix = transformations[0]
 
     for i in transformations[1:]:
-        matrix = i * matrix
+        matrix = dot(i, matrix)
 
     return matrix
 
 
 def rotate(angle):
     rangle = math.radians(angle)
-    matrix = numpy.matrix([[math.cos(rangle), -math.sin(rangle), 0.0],
-                           [math.sin(rangle), math.cos(rangle), 0.0],
-                           [0.0, 0.0, 1.0]])
+    matrix = [[math.cos(rangle), -math.sin(rangle), 0.0],
+              [math.sin(rangle), math.cos(rangle), 0.0],
+              [0.0, 0.0, 1.0]]
 
     return matrix
 
 
 def translate(x=0, y=0):
-    matrix = numpy.matrix([[1.0, 0.0, x],
-                           [0.0, 1.0, y],
-                           [0.0, 0.0, 1.0]])
+    matrix = [[1.0, 0.0, x],
+              [0.0, 1.0, y],
+              [0.0, 0.0, 1.0]]
 
     return matrix
 
 
 def scale(x=1.0, y=1.0):
-    matrix = numpy.matrix([[x, 0.0, 0.0],
-                           [0.0, y, 0.0],
-                           [0.0, 0.0, 1.0]])
+    matrix = [[x, 0.0, 0.0],
+              [0.0, y, 0.0],
+              [0.0, 0.0, 1.0]]
 
     return matrix
 
 
 def shear(k=1.0):
-    matrix = numpy.matrix([[1.0, k, 0.0],
-                           [0.0, 1.0, 0.0],
-                           [0.0, 0.0, 1.0]])
+    matrix = [[1.0, k, 0.0],
+              [0.0, 1.0, 0.0],
+              [0.0, 0.0, 1.0]]
 
     return matrix
 
@@ -52,13 +62,13 @@ def do_it(matrix, lines):
     new_lines = []
 
     for line in lines:
-        start_matrix = numpy.matrix([[line.start.x], [line.start.y], [1]])
-        start_res = matrix.dot(start_matrix)
+        start_matrix = [[line.start.x], [line.start.y], [1]]
+        start_res = dot(matrix, start_matrix)
 
-        end_matrix = numpy.matrix([[line.end.x], [line.end.y], [1]])
-        end_res = matrix.dot(end_matrix)
+        end_matrix = [[line.end.x], [line.end.y], [1]]
+        end_res = dot(matrix, end_matrix)
 
-        new_lines.append(vector.Line(vector.Point(float(start_res[0]), float(start_res[1])), vector.Point(float(end_res[0]), float(end_res[1]))))
+        new_lines.append(vector.Line(vector.Point(float(start_res[0][0]), float(start_res[1][0])), vector.Point(float(end_res[0][0]), float(end_res[1][0]))))
 
     return new_lines
 
@@ -111,6 +121,7 @@ def example3():
         svg.objects.extend(obj)
 
     svg.save()
+
 
 example1()
 example2()
