@@ -28,6 +28,20 @@ class Point(object):
                'fill="black" />\n'.format(self.x, self.y, self.color)
 
 
+class Rectangle(object):
+
+    type = "rectangle"
+
+    def __init__(self, x, y, size, color="black"):
+        self.x = x
+        self.y = y
+        self.size = size
+        self.color = color
+
+    def __str__(self):
+        return '<rect x="{}" y="{}" width="{}" height="{}" \
+                style="fill:{};stroke:{};stroke-width:1;" />'.format(self.x, self.y, self.size, self.size, self.color, self.color)
+
 class Line(object):
 
     type = "line"
@@ -85,7 +99,7 @@ class SVG(object):
 
         if min_x < 0 or min_y < 0:
             for obj in self.objects:
-                if obj.type == "point":
+                if obj.type in ("point", "rectangle"):
                     obj.x += abs(min_x)
                     obj.y += abs(min_y)
                 if obj.type == "line":
