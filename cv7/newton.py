@@ -60,7 +60,7 @@ def newton(x_range=(-2, 2), y_range=(-2, 2), resolution=800, tolerance=0.0001, t
         img.show()
 
 #start_time = time.time()
-#newton(resolution=20, timing=True)
+#newton(resolution=800, timing=True)
 #end_time = time.time()
 #print("Time for not parallel function is %f [s]" % (end_time - start_time))
 
