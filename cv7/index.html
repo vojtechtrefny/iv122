@@ -80,6 +80,9 @@ setinu sekundy).</p>
 je urychlen cca. 3,4krát (na čtyřjádrovém procesoru) --  1,54 sekundy vs. 5.27 sekundy. Samotné vytvoření/vykreslení obrázku
 pak zabere cca. dalších 5 sekund. V případě využití jiného řešení pro předávání výsledků mezi procesy (např. ručně přes socket)
 by tedy došlo k cca. 1,5 násobnému zrychlení celého programu.</p>
+<p>Poznámka: Později jsem se rozhodl vyzkoušet předání vypočtených hodnot pomocí souborů (jednotlivé procesy výsledky
+zapsaly do souboru odkud je pak proces vytvářející obrázek přečetl). Zrychlení v tomto případě bylo na dvoujádrovém
+procesoru (a tedy se dvě procesy na výpočet) z 11.31 sekund na 7.18 sekund, tedy opět cca. 1.5 násobné.</p>
 
 <ul>
   <li><a href="https://github.com/vojtechtrefny/iv122/blob/master/cv7/parallel.py">Kód</a></i></li>
