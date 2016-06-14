@@ -19,3 +19,4 @@ def feigenbaum(xstart=0.5, xrange=(0, 1), rrange=(2.4, 4.0)):
 
 
 feigenbaum()
+feigenbaum(xrange=(0.7, 0.9), rrange=(3.4, 3.6))
