@@ -12,6 +12,11 @@ mazes = [(4, "2 2 2 1 2 3 3 3 3 3 1 3 3 1 1 0"),
 
 
 def read_maze(maze_size, maze_str):
+    """ Create a maze as dict of dicts (with neighbours and its 'prizes') from
+        given string.
+    """
+
+    # create a list of lists from the string
     maze_str = (int(n) for n in maze_str.split())
     maze_list = [[next(maze_str) for i in range(maze_size)] for j in range(maze_size)]
 
@@ -23,6 +28,7 @@ def read_maze(maze_size, maze_str):
             if maze_list[i][j] == 0:
                 continue
 
+            # add neighbours
             if i + maze_list[i][j] < maze_size:
                 maze[(i, j)][i + maze_list[i][j], j] = maze_list[i][j]
             if i - maze_list[i][j] >= 0:
@@ -63,13 +69,14 @@ def dijkstra(maze):
             if alt < dist[neighbor]:
                 dist[neighbor] = alt
                 prev[neighbor] = [u]
-            elif alt == dist[neighbor]:
+            elif alt == dist[neighbor]:  # add all shortest path neighbours
                 prev[neighbor].append(u)
 
     return dist, prev
 
 
 def paths(graph, start):
+    """ Find number of paths in graph (only shortest paths from dijkstra are in the graph) """
     global num_paths
 
     if start == (0, 0):
@@ -81,10 +88,11 @@ def paths(graph, start):
 
 
 def shortest_path(maze, maze_size):
+    """ Find a shortest path in the maze """
+
     dist, prev = dijkstra(maze)
 
-    #print(prev)
-
+    # start with the end cell
     path = [(maze_size - 1, maze_size - 1)]
 
     while True:

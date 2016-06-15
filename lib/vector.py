@@ -119,6 +119,3 @@ class SVG(object):
                 f.write(str(obj))
 
             f.write('</svg>\n')
-
-    def show(self):
-        pass

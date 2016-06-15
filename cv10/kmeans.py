@@ -7,13 +7,13 @@ from decimal import Decimal
 
 
 def distance(a, b):
-    # distance of two points
+    """ distance of two points """
 
     return math.sqrt((b[0] - a[0])**2 + (b[1] - a[1])**2)
 
 
 def get_center(points):
-    # center of cluster
+    """ center of cluster """
 
     x = sum(p[0] for p in points) / len(points)
     y = sum(p[1] for p in points) / len(points)
@@ -22,7 +22,7 @@ def get_center(points):
 
 
 def normalize(points):
-    # normalize data so both axes are between 0 and 1
+    """ normalize data so both axes are between 0 and 1 """
 
     x_max = max(p[0] for p in points)
     y_max = max(p[1] for p in points)
@@ -42,6 +42,7 @@ def read_data(filename):
 
 
 def random_data(num_clusters):
+    """ random data for number of clusters """
 
     points = []
 
@@ -86,6 +87,7 @@ def kmeans(points, num_clusters, iterations):
         pyplot.plot([p[0] for p in clusters[cluster]], [p[1] for p in clusters[cluster]], ".", color=next(colors))
 
     pyplot.show()
+
 
 # data from file
 data = read_data("cv10/faithful.txt")

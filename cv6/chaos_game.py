@@ -8,8 +8,9 @@ def chaos_game(n=3, p=1/2, iterations=100000, regular=True):
 
     img = bitmap.PNG(800, 800)
 
+    # regular or random starting points?
     if regular:
-        points = [bitmap.Point(400 + 300 * math.cos(2 * math.pi * i / n),
+        points = [bitmap.Point(400 + 300 * math.cos(2 * math.pi * i / n),  # + 400 is to be sure we don't have negative coordinates
                                400 + 300 * math.sin(2 * math.pi * i / n)) for i in range(1, n + 1)]
     else:
         points = [bitmap.Point(400 + 300 * math.cos(2 * math.pi * random.random()),

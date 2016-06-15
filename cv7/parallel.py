@@ -1,15 +1,14 @@
 import time
 import math
 import numpy
-import tempfile
-from multiprocessing import Process, Queue
 
 from lib import bitmap
 
 roots = [complex(1, 0), complex(-0.5, math.sqrt(3) / 2), complex(-0.5, -math.sqrt(3) / 2)]
 znext = lambda z : z - ((z**3 - 1) / (3 * z**2))
 
-def newton_worker(id, queue, x_range, y_range, x_step, y_step, tolerance):
+
+def newton_worker(id, x_range, y_range, x_step, y_step, tolerance):
     res = []
     for x in numpy.arange(x_range[0], x_range[1], x_step):
         for y in numpy.arange(y_range[0], y_range[1], y_step):
@@ -53,12 +52,11 @@ def newton_main(x_range=(-2, 2), y_range=(-2, 2), resolution=800, tolerance=0.00
     x_step = x_length / x_resolution
     y_step = y_length / y_resolution
 
-    queue = Queue()
     workers = []
     files = []
     for i in range(num_workers):
         x_part_range = (x_range[0] + i * (x_length / num_workers), x_range[0] + (i + 1) * (x_length / num_workers))
-        p = Process(target=newton_worker, args=(i, queue, x_part_range, y_range, x_step, y_step, tolerance))
+        p = Process(target=newton_worker, args=(i, x_part_range, y_range, x_step, y_step, tolerance))
         files.append("res%d" % i)
         p.start()
         workers.append(p)

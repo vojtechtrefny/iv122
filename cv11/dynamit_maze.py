@@ -13,6 +13,11 @@ prizes = {"." : 1,
 
 
 def read_maze(maze_size, maze_str):
+    """ Create a maze as dict of dicts (with neighbours and its 'prizes') from
+        given string (see 'test_maze'). Also finds start and end point.
+    """
+
+    # create a list of lists (maze_size lenght) from the string
     maze_iter = iter(maze_str)
     maze_list = [[next(maze_iter) for i in range(maze_size)] for j in range(maze_size)]
 
@@ -21,11 +26,13 @@ def read_maze(maze_size, maze_str):
         for j in range(maze_size):
             maze[(i, j)] = {}
 
+            # find start and end
             if maze_list[i][j] == "A":
                 start = (i, j)
             elif maze_list[i][j] == "B":
                 end = (i, j)
 
+            # add neighbours
             if i + 1 < maze_size:
                 maze[(i, j)][i + 1, j] = prizes[maze_list[i + 1][j]]
             if i - 1 >= 0:
@@ -73,10 +80,14 @@ def dijkstra(maze, start):
 
 
 def shortest_path(maze, maze_size, start, end):
+    """ Find the shortest path in the maze """
+
     dist, prev = dijkstra(maze, start)
 
+    # start with end
     path = [end]
 
+    # add previous steps
     while True:
         path.append(prev[path[-1]][0])
 
@@ -89,6 +100,8 @@ def shortest_path(maze, maze_size, start, end):
 
 
 def random_maze(size=8):
+    """ Generate random maze """
+
     maze = ""
 
     # place start and end to first/last row
@@ -107,15 +120,18 @@ def random_maze(size=8):
 
 
 def print_maze(index, maze_size, maze_str, positions, cell_size=50):
+    # create a list of lists from give 'maze string'
     maze_iter = iter(maze_str)
     maze_list = [[next(maze_iter) for i in range(maze_size)] for j in range(maze_size)]
 
     svg = vector.SVG(folder="cv11", name="maze%d" % index)
 
+    # add lines
     for i in range(maze_size + 1):
         svg.add_line(0 + cell_size*i, 0, 0 + cell_size*i, maze_size*cell_size)
         svg.add_line(0, 0 + cell_size*i, maze_size*cell_size, 0 + cell_size*i)
 
+    # add start points and 'walls'
     for i in range(maze_size):
         for j in range(maze_size):
             if maze_list[i][j] == "#":

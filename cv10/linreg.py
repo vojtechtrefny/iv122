@@ -17,6 +17,8 @@ def read_data(filename):
 
 
 def random_data(a, b, mu=0, sigma=0.5):
+    """ random data for given a, b """
+
     data = []
 
     for x in numpy.arange(0, 10, 0.1):
@@ -31,6 +33,10 @@ def random_data(a, b, mu=0, sigma=0.5):
 
 
 def lin_reg(data, orig=None):
+    """ Compute linear regression from data
+        :orig (tuple): original a, b to plot original line too
+    """
+
     n = len(data)
     x = [x for x, y in data]
     y = [y for x, y in data]

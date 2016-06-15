@@ -56,13 +56,15 @@ def newton(x_range=(-2, 2), y_range=(-2, 2), resolution=800, tolerance=0.0001, t
                 z = znext(z)
                 i += 1
 
+    # do not show image when measuring time
     if not timing:
         img.show()
 
-#start_time = time.time()
-#newton(resolution=800, timing=True)
-#end_time = time.time()
-#print("Time for not parallel function is %f [s]" % (end_time - start_time))
+
+start_time = time.time()
+newton(resolution=800, timing=True)
+end_time = time.time()
+print("Time for not parallel function is %f [s]" % (end_time - start_time))
 
 newton()
 newton(x_range=(-0.5, 0.5), y_range=(-0.5, 0.5))
