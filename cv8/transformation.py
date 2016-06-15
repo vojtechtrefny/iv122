@@ -73,11 +73,12 @@ def do_it(matrix, lines):
     return new_lines
 
 
-def square(size=100):
-    lines = [vector.Line(vector.Point(0, 0), vector.Point(size, 0)),
-             vector.Line(vector.Point(size, 0), vector.Point(size, size)),
-             vector.Line(vector.Point(size, size), vector.Point(0, size)),
-             vector.Line(vector.Point(0, size), vector.Point(0, 0))]
+def square(a=100, cx=0, cy=0):
+    """ Square with center in cx|cy and side size a """
+    lines = [vector.Line(vector.Point(cx - a / 2, cy - a / 2), vector.Point(cx - a / 2, cy + a / 2)),
+             vector.Line(vector.Point(cx - a / 2, cy + a / 2), vector.Point(cx + a / 2, cy + a / 2)),
+             vector.Line(vector.Point(cx + a / 2, cy + a / 2), vector.Point(cx + a / 2, cy - a / 2)),
+             vector.Line(vector.Point(cx + a / 2, cy - a / 2), vector.Point(cx - a / 2, cy - a / 2))]
     return lines
 
 
@@ -85,7 +86,7 @@ def example1():
     svg = vector.SVG("cv8", "example1")
     matrix = combine([rotate(20), scale(1.1, 1.1), translate(5, 10)])
 
-    obj = square()
+    obj = square(a=100, cx=50, cy=50)
     svg.objects.extend(obj)
 
     for i in range(10):
@@ -99,7 +100,7 @@ def example2():
     svg = vector.SVG("cv8", "example2")
     matrix = combine([rotate(10), scale(1.1, 0.8)])
 
-    obj = square()
+    obj = square(cx=0, cy=0)
     svg.objects.extend(obj)
 
     for i in range(15):
